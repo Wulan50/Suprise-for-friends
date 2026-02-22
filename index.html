@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special for You ✨</title>
+    <style>
+        :root {
+            --pink: #ffafbd;
+            --cream: #ffc3a0;
+            --text: #4a4a4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, var(--pink), var(--cream));
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.5);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #fff;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 { font-size: 1.5rem; margin-bottom: 5px; color: #d63384; }
+        .sub { font-size: 0.9rem; opacity: 0.7; margin-bottom: 20px; }
+
+        .typewriter {
+            font-size: 1.1rem;
+            min-height: 80px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+      
+        .for-name {
+            font-size: 1.0rem;
+            font-weight: bold;
+            color: #d63384;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .sub { font-size: 0.8rem; opacity: 0.6; margin-bottom: 20px; font-style: italic; }
+
+
+        .btn-love {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+            transition: 0.3s;
+        }
+
+        .btn-love:hover { transform: scale(1.05); background: #ff4757; }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Pop up bunga */
+        #bunga {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-hearts" id="heart-container"></div>
+    <div class="container">
+        <span class="for-name">For:Fenza Ratu Zeanafeli kdz✨</span>
+        <div class="sub">From your best friend</div>
+
+    <div class="container">
+        <div class="profile-pic">🌸</div>
+        <h1 id="judul">Hai, Bestie!</h1>
+        <div class="sub">Just a little surprise for you...</div>
+        
+        <div class="typewriter" id="pesan"></div>
+
+        <button class="btn-love" id="btn" onclick="tampilkanBunga()">Klik Ini ❤️</button>
+    </div>
+
+    <div id="bunga">💐</div>
+
+    <script>
+        const teks = "Aku nggak pinter ngerangkai kata-kata puitis karena kita bukan lagi main sinetron. Intinya, Kamu itu kayak WiFi, kalau nggak ada rasanya hampa, meski kita berbeda pulau, semoga kita tetap jadi bestie . Stay gold, stay you! ✨";
+        let i = 0;
+
+        function ketik() {
+            if (i < teks.length) {
+                document.getElementById("pesan").innerHTML += teks.charAt(i);
+                i++;
+                setTimeout(ketik, 70); // Kecepatan ngetik
+            }
+        }
+
+        function buatHati() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.top = '-20px';
+            heart.style.transition = 'top 5s linear';
+            
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.style.top = '100vh';
+            }, 100);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        function tampilkanBunga() {
+            const bunga = document.getElementById('bunga');
+            bunga.style.display = 'block';
+            document.getElementById('btn').style.display = 'none';
+            document.getElementById('judul').innerHTML = "You're Precious!";
+            
+            alert("Satu buket bunga buat kamu yang luar biasa! 💐✨");
+            
+            setInterval(buatHati, 300);
+        }
+
+        // Jalankan efek ketik saat halaman dibuka
+        window.onload = ketik;
+    </script>
+</body>
+</html>
